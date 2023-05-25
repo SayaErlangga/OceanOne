@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        input{
+            width: 20px;
+            border: none transparent;
+        }
+        input:focus{
+            outline: none;
+        }
+        td{
+            padding: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
+            text-align: center;
+            font-size: medium;
+        }
+        input{
+            font-size: medium;
+        }
+        th{
+            text-align: left;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        *{
+            font-family: 'Poppins', sans-serif;
+        }
+        .center{
+            margin: auto;
+        }
+        input[type="text"]{
+            background-color : rgb(215, 215, 215);; 
+
+        }
+    </style>
+</head>
+<body>
+    <table style="background-color: rgb(215, 215, 215);" class="center">
+        <tr style="background-color: azure;">
+            <th colspan="5"><p style="text-align: center; color: darkorange; font-weight: bold;">ITEMS YOU CONSUME DAILY</p>
+            <p style="text-align: center; font-weight: normal;">Please enter the quantity for<b st> each day:</b></p></th>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="font-size: small; font-weight: bold; color: gray;">DAY</td>
+            <td style="font-size: small; font-weight: bold; color: gray;">YEAR</td>
+        </tr>
+        <tr>
+            <th>Plastic Bottles</th>
+            <td><input type="text" id="plasticBottles" oninput="inputPlasticBottles()" value="0"></td>
+            <td id="totalPlasticBottles"></td>
+        </tr>
+        <tr>
+            <th>Plastic Cups</th>
+            <td><input type="text" id="plasticCups" oninput="inputPlasticCups()" value="0"></td>
+            <td id="totalPlasticCups"></td>
+        </tr>
+        <tr>
+            <th>Straws</th>
+            <td><input type="text" id="straws" oninput="inputStraws()" value="0"></td>
+            <td id="totalStraws"></td>
+        </tr>
+        <tr>
+            <th>Cotton Swabs</th>
+            <td><input type="text" id="cottonSwabs" oninput="inputCottonSwabs()" value="0"></td>
+            <td id="totalCottonSwabs"></td>
+        </tr>
+        <tr>
+            <th>Cigarette Butts</th>
+            <td><input type="text" id="cigaretteButts" oninput="inputCigaretteButts()" value="0"></td>
+            <td id="totalCigaretteButts"></td>
+        </tr>
+        <tr>
+            <th>Plastic Resealable Bags</th>
+            <td><input type="text" id="plasticResealableBags" oninput="inputPlasticResealableBags()" value="0"></td>
+            <td id="totalPlasticResealableBags"></td>
+        </tr>
+        <tr>
+            <th>Plastic Cling Wrap</th>
+            <td><input type="text" id="plasticClingWrap" oninput="inputPlasticClingWrap()" value="0"></td>
+            <td id="totalPlasticClingWrap"></td>
+        </tr>
+        <tr>
+            <th>Plastic Silverware</th>
+            <td><input type="text" id="plasticSilverware" oninput="inputPlasticSilverware()" value="0"></td>
+            <td id="totalPlasticSilverware"></td>
+        </tr>
+        <tr>
+            <th>Plastic Stirrers</th>
+            <td><input type="text" id="plasticStirrers" oninput="inputPlasticStirrers()" value="0"></td>
+            <td id="totalPlasticStirrers"></td>
+        </tr>
+        <tr>
+            <th>Food Containers</th>
+            <td><input type="text" id="foodContainers" oninput="inputFoodContainers()" value="0"></td>
+            <td id="totalFoodContainers"></td>
+        </tr>
+        <tr style="background-color: rgb(163, 163, 163);">
+            <td style="text-align: left;">Total</td>
+            <th colspan="4" id="totalSemua" style="text-align: center;"></th>
+        </tr>
+    </table>
+
+    <script>
+        var plasticBottles = document.getElementById("plasticBottles");
+        var totalPlasticBottles = document.getElementById("totalPlasticBottles");
+        var plasticCups = document.getElementById("plasticCups");
+        var totalPlasticCups = document.getElementById("totalPlasticCups");
+        var straws = document.getElementById("straws");
+        var totalStraws = document.getElementById("totalStraws");
+        var cottonSwabs = document.getElementById("cottonSwabs");
+        var totalCottonSwabs = document.getElementById("totalCottonSwabs");
+        var cigaretteButts = document.getElementById("cigaretteButts");
+        var totalCigaretteButts = document.getElementById("totalCigaretteButts");
+        var plasticResealableBags = document.getElementById("plasticResealableBags");
+        var totalPlasticResealableBags = document.getElementById("totalPlasticResealableBags");
+        var plasticClingWrap = document.getElementById("plasticClingWrap");
+        var totalPlasticClingWrap = document.getElementById("totalPlasticClingWrap");
+        var plasticSilverware = document.getElementById("plasticSilverware");
+        var totalPlasticSilverware = document.getElementById("totalPlasticSilverware");
+        var plasticStirrers = document.getElementById("plasticStirrers");
+        var totalPlasticStirrers = document.getElementById("totalPlasticStirrers");
+        var foodContainers = document.getElementById("foodContainers");
+        var totalFoodContainers = document.getElementById("totalFoodContainers");
+        var totalSemua = document.getElementById("totalSemua");
+
+        plasticCups.addEventListener('input', calculate);
+        plasticBottles.addEventListener('input', calculate);
+        straws.addEventListener('input', calculate);
+        cottonSwabs.addEventListener('input', calculate);
+        cigaretteButts.addEventListener('input', calculate);
+        plasticResealableBags.addEventListener('input', calculate);
+        plasticClingWrap.addEventListener('input', calculate);
+        plasticSilverware.addEventListener('input', calculate);
+        plasticStirrers.addEventListener('input', calculate);
+        foodContainers.addEventListener('input', calculate);
+
+        window.onload = function inputPlasticBottles(){
+            totalPlasticBottles.textContent = 0;
+            totalPlasticCups.textContent = 0;
+            totalStraws.textContent = 0;
+            totalCottonSwabs.textContent = 0;
+            totalCigaretteButts.textContent = 0;
+            totalPlasticResealableBags.textContent = 0;
+            totalPlasticClingWrap.textContent = 0;
+            totalPlasticSilverware.textContent = 0;
+            totalPlasticStirrers.textContent = 0;
+            totalFoodContainers.textContent = 0;
+            totalSemua.textContent = 0;
+        }
+
+        function inputPlasticBottles(){
+            totalPlasticBottles.innerHTML = Number(plasticBottles.value) * 365;
+        }
+        function inputPlasticCups(){
+            totalPlasticCups.innerHTML = Number(plasticCups.value) * 365;
+        }
+        function inputStraws(){
+            totalStraws.innerHTML = Number(straws.value) * 365;
+        }
+        function inputCottonSwabs(){
+            totalCottonSwabs.innerHTML = Number(cottonSwabs.value) * 365;
+        }
+        function inputCigaretteButts(){
+            totalCigaretteButts.innerHTML = Number(cigaretteButts.value) * 365;
+        }
+        function inputPlasticResealableBags(){
+            totalPlasticResealableBags.innerHTML = Number(plasticResealableBags.value) * 365;
+        }
+        function inputPlasticClingWrap(){
+            totalPlasticClingWrap.innerHTML = Number(plasticClingWrap.value) * 365;
+        }
+        function inputPlasticSilverware(){
+            totalPlasticSilverware.innerHTML = Number(plasticSilverware.value) * 365;
+        }
+        function inputPlasticStirrers(){
+            totalPlasticStirrers.innerHTML = Number(plasticStirrers.value) * 365;
+        }
+        function inputFoodContainers(){
+            totalFoodContainers.innerHTML = Number(foodContainers.value) * 365;
+        }
+
+        function calculate(){
+            var value1 = parseFloat(totalPlasticBottles.textContent);
+            var value2 = parseFloat(totalPlasticCups.textContent);
+            var value3 = parseFloat(totalStraws.textContent);
+            var value4 = parseFloat(totalCottonSwabs.textContent);
+            var value5 = parseFloat(totalCigaretteButts.textContent);
+            var value6 = parseFloat(totalPlasticResealableBags.textContent);
+            var value7 = parseFloat(totalPlasticClingWrap.textContent);
+            var value8 = parseFloat(totalPlasticSilverware.textContent);
+            var value9 = parseFloat(totalPlasticStirrers.textContent);
+            var value10 = parseFloat(totalFoodContainers.textContent);
+
+            var result = value1 + value2 + value3 + value4 + value5 + value6 + value7 + value8 + value9 + value10;
+            totalSemua.textContent = result;
+        }
+    </script>
+</body>
+</html>
